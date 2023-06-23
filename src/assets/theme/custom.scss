@@ -1,0 +1,424 @@
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 100;
+  src: url('../font/Ubuntu-Thin.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../font/Ubuntu-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../font/Ubuntu-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../font/Ubuntu-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../font/Ubuntu-Black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: italic;
+  font-weight: 100;
+  src: url('../font/Ubuntu-ThinItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: italic;
+  font-weight: 400;
+  src: url('../font/Ubuntu-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: italic;
+  font-weight: 500;
+  src: url('../font/Ubuntu-MediumItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: italic;
+  font-weight: 700;
+  src: url('../font/Ubuntu-BoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: italic;
+  font-weight: 900;
+  src: url('../font/Ubuntu-BlackItalic.ttf') format('truetype');
+}
+
+
+@function calculateRem($size) {
+  $remSize: calc($size / 16px);
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+  line-height: calculateRem($size)*1.5;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-weight: 400;
+  color: #787878;
+  font-family: 'Ubuntu', sans-serif;
+  @include font-size(15px);
+
+  scrollbar-width: thin !important;
+  scrollbar-color:  #00BCD4 #090c1073 !important;
+
+  *::-webkit-scrollbar {
+      width: 7px !important;
+      height: 7px;
+  }
+
+  *::-webkit-scrollbar-track {
+  background: #090c1073;
+  }
+
+  *::-webkit-scrollbar-thumb {
+  background-color: #00BCD4;
+  border-radius: 20px;
+  // border: 3px solid rgba(69,69,69,.09);
+  }
+}
+
+
+html {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+  height: 100%;
+  font-family: Ubuntu;
+  @include font-size(15px);
+  position: relative;
+  background-color: white !important;
+}
+
+a{
+  text-decoration: none;
+}
+
+:root{
+  --blue:#164F73;
+  --green:#4ED971;
+  --red:#F37581;
+}
+
+h1,h2,h3,h4,h5{margin: 0px; padding: 0px;}
+h1{@include font-size(21px)}
+h2{@include font-size(19px)}
+h3{@include font-size(17px)}
+h4{@include font-size(15px)}
+h5{@include font-size(13px)}
+
+
+.blue{
+  color: var(--blue) !important;
+}
+
+/* *
+*   ###################### FUENTES #####################################
+* */
+
+.font-100{
+	font-weight:100 !important;
+}
+
+.font-400{
+	font-weight: 400 !important;
+}
+
+.font-500{
+	font-weight: 500 !important;
+}
+
+.font-700{
+	font-weight: 700 !important;
+}
+
+.font-900{
+	font-weight: 900 !important;
+}
+
+
+
+.flex{
+    display: flex;
+}
+
+.grid{
+	display: grid;
+	height: 100%;
+}
+
+.gap-10{
+    grid-gap: 10px !important;
+}
+.gap-20{
+    grid-gap: 20px !important;
+}
+
+/* *
+*   ###################### POSITIONS #####################################
+* */
+
+.text-right{
+	text-align: right;
+}
+.text-center{
+	text-align: center;
+}
+.text-left{
+  text-align: left;
+}
+
+
+.justify-items-center{
+	justify-items:center;
+}
+.justify-items-start{
+	justify-items:start;
+}
+.justify-items-end{
+	justify-items:end;
+}
+
+.align-items-start{
+	align-items: start;
+}
+.align-items-center{
+	align-items: center;
+}
+.align-items-end{
+	align-items: end;
+}
+
+
+.justify-self-center{
+	justify-self:center;
+}
+.justify-self-end{
+	justify-self:end;
+}
+.justify-self-start{
+	justify-self:start;
+}
+.justify-self-stretch{
+	justify-self:stretch;
+}
+
+.align-self-start{
+	align-self: start;
+}
+.align-self-center{
+	align-self: center;
+}
+.align-self-end{
+	align-self: end;
+}
+
+.align-content-start{
+	align-content: start;
+}
+.align-content-center{
+	align-content: center;
+}
+.align-content-end{
+	align-content: end;
+}
+
+.justify-content-center{
+	justify-content:center;
+}
+.justify-content-end{
+	justify-content:end;
+}
+.justify-content-start{
+	justify-content:start;
+}
+
+
+.card{
+  padding: 20px;
+  background-color: white;
+  width: max-content;
+  height: max-content;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+
+
+.form-group {
+
+  margin-bottom: 25px;
+  display: grid;
+  align-content: start;
+  label {
+    font-weight: 600;
+    font-size: 14px;
+    color:#4d4d4d
+  }
+}
+
+input:focus,textarea:focus{
+  outline: none;
+}
+
+input,select{
+  cursor: pointer;
+  border: 1px solid #787878;
+  border-radius: 8px;
+  padding: 8px 12px;
+  height: 45px;
+}
+
+select{
+  min-width: 120px;
+  max-width: 400px;
+  margin: 5px 0px;
+  background: none;
+  border: none;
+}
+
+.input-block{
+  width: 100% !important;
+  max-width: none !important;
+}
+
+
+.btn{
+  background: none;
+  cursor: pointer;
+  border: none;
+  font-weight: 500;
+  padding: 10px 40px;
+  &-primary{
+    @extend .btn;
+    background-color: var(--blue);
+    color: white;
+  }
+
+  &-green{
+    @extend .btn;
+    background-color: var(--green);
+    color: var(--blue);
+  }
+
+  &-red{
+    @extend .btn;
+    background-color: var(--red);
+    color: white
+  }
+
+  &-secondary{
+        @extend .btn;
+    background-color: white;
+    border:1px solid #cecece;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+
+}
+
+
+.checkbox-group {
+	display: grid;
+	grid-auto-flow: column;
+	justify-content: space-between;
+	align-items: center;
+	grid-gap: 1px;
+	margin-bottom: 4px;
+
+	label {
+		cursor: pointer !important;
+	}
+}
+
+.input-checkbox {
+	min-width: 0px !important;
+	width: 25px;
+	height: 25px;
+	padding: 0px;
+	background-color: white;
+	cursor: pointer;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	outline: 1.5px solid #A6A6A6;
+
+	&:checked {
+		width: 25px;
+		height: 25px;
+		padding: 0px;
+		position: relative;
+		background-color: var(--blue);
+		outline: none;
+		border: 2px solid var(--blue);
+	}
+
+	&:checked+label {
+		color: var(--blue);
+	}
+
+	&:checked:before {
+		content: '✓';
+		align-self: center;
+		width: 8px;
+		height: 8px;
+		border-radius: 5px;
+		position: absolute;
+		top: 1px;
+		left: 4px;
+		padding: 0px;
+		font-size: 14px;
+    color: white;
+}
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+}

@@ -1,0 +1,116 @@
+<div class="temp-dashboard">
+
+  <div class="menu-top">
+    <ng-container *ngIf="step == 0">
+      <button
+        class=" justify-self-center"
+        [class]="finish ? 'btn-red' : 'btn-green'"
+        (click)=" finish ? (step = 2) : (finish = true) "
+      >
+        {{finish ? 'Finalizar Jornada' : 'Iniciar Jornada'}}
+      </button>
+
+      <div class="content-select-route">
+        <div class="form-group">
+          <label for="">Ruta actual</label>
+          <button class="btn select-route">Seleccione una ruta</button>
+        </div>
+
+        <button class="btn see-all" (click)="step = 1">Ver todas las rutas</button>
+      </div>
+    </ng-container>
+
+    <div class="content-return" *ngIf="step > 0">
+      <button class="btn-secondary btn-back" (click)="step = 0"> <mat-icon
+          class="material-symbols-outlined">chevron_left</mat-icon>
+      </button>
+
+      <button class="btn-red">Finalizar Jornada</button>
+    </div>
+
+
+  </div>
+
+  <div [class.content-middle]="step > 0">
+
+    <div *ngIf="step == 1 " class="menu-middle">
+      <div class="form-group">
+        <label for="" class="blue">Ruta actual</label>
+        <button class="btn-secondary route-active">Urb. Costa Azul</button>
+      </div>
+
+
+      <div class="list-route">
+        <p class="blue font-500">Otras rutas</p>
+
+
+        <button class="btn-secondary">Urb. Costa Azul</button>
+        <button class="btn-secondary">Urb. Costa Azul</button>
+        <button class="btn-secondary">Urb. Costa Azul</button>
+
+      </div>
+
+    </div>
+
+    <div *ngIf="step == 2" class="menu-middle-list">
+      <div class="form-group">
+        <label for="" class="blue">Ruta actual</label>
+        <button class="btn-secondary route-active">Urb. Costa Azul</button>
+      </div>
+
+
+      <div class="list-route-check">
+        <div  class="checkbox-group" *ngFor="let item of [1,2,3,4,5,6,7]">
+            <label class="font-700 blue">Urb. Costa Azul</label>
+
+            <div class="flex align-items-center gap-10">
+              <input type="checkbox" class="input-checkbox">
+              <label class="font-700 blue">Visitado</label>
+            </div>
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="menu-bottom">
+
+    <mat-tab-group>
+      <mat-tab label="Cargando">
+        <div class="content-charge">
+          <div class="form-group">
+            <label for="">Camión asignado</label>
+
+            <ng-select class="custom" notFoundText="Sin Resultados" placeholder="Selecciona el tipo de camión"
+              [clearable]="false">
+              <ng-option [value]="1">
+                10 mil litros
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Despachando">
+        <div class="content-charge">
+          <div class="form-group">
+            <label for="">Camión asignado</label>
+
+            <ng-select class="custom" notFoundText="Sin Resultados" placeholder="Selecciona el tipo de camión"
+              [clearable]="false">
+              <ng-option [value]="1">
+                10 mil litros
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
