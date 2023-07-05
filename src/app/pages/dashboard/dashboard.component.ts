@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 declare const mapboxgl: any;
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,7 @@ declare const mapboxgl: any;
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit  {
-
+  locationEnabled: any = true;
   initJournal: FormGroup;
   step:number = 0;
   finish:boolean = false;
@@ -27,7 +28,7 @@ export class DashboardComponent implements OnInit  {
   zonas:any[] = [];
   alMenosUnCheckMarcado: boolean = false; // Variable para indicar si se ha seleccionado al menos uno
 
-  constructor(private dashboardService:DashboardService,private dialog: MatDialog,  private formBuilder: FormBuilder){
+  constructor(private dashboardService:DashboardService, private snackBar: MatSnackBar,private dialog: MatDialog,  private formBuilder: FormBuilder){
 
     this.initJournal = this.formBuilder.group({
       iddrive: ['', Validators.required],
@@ -153,6 +154,25 @@ export class DashboardComponent implements OnInit  {
     }
   }
 
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+         position => {
+          console.log('entramos primero')
+           this.locationEnabled = true;
+         },
+         error => {
+          console.log('entramos segundo')
+           this.locationEnabled = false;
+         }
+      );
+    } else {
+      console.log('entramos else')
+      this.locationEnabled = false;
+    }
+    console.log('esta es la vriable', this.locationEnabled)
+  }
+
   saveActualRoute(item:any){
     if(localStorage.getItem('actualRoute')){
       localStorage.removeItem('actualRoute')
@@ -192,18 +212,20 @@ export class DashboardComponent implements OnInit  {
   initDay(){
 
 console.log(this.initJournal.value)
+this.getLocation()
 
-if(this.actualRoute){
-  this.initJournal.controls['dateStart'].setValue(moment().format('YYYY-MM-DD'))
-  this.initJournal.controls['idpath'].setValue(this.actualRoute.id)
-}else{
-  this.openModal('Seleccione la ruta y el camion para iniciar la jornada','error')
-  return
-}
+if (this.locationEnabled) {
+      if(this.actualRoute){
+        this.initJournal.controls['dateStart'].setValue(moment().format('YYYY-MM-DD'))
+        this.initJournal.controls['idpath'].setValue(this.actualRoute.id)
+      }else{
+        this.openModal('Para iniciar jornada debes: 1) Seleccionar ruta. 2)Seleccionar camión asignado','error')
+        return
+      }
 
 
     if(this.initJournal.invalid){
-      this.openModal('Seleccione la ruta y el camion para iniciar la jornada','error')
+      this.openModal('Para iniciar jornada debes: 1) Seleccionar ruta. 2)Seleccionar camión asignado','error')
       return
     }
 
@@ -218,7 +240,9 @@ if(this.actualRoute){
       this.jornadaNueva=objetoGuardadoJornada;
   
     });
-
+  }else{
+    this.snackBar.open('Por favor, active la ubicación antes de iniciar sesión.', 'Cerrar');
+  }
 
 
   }
