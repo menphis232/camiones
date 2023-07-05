@@ -14,6 +14,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ModalComponent } from './components/modal/modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     HttpClientModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule
   ],
   providers: [    {
     provide: HTTP_INTERCEPTORS,

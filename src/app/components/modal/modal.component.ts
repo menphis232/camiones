@@ -8,9 +8,11 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ModalComponent {
   mensaje:any
+  type:any
   constructor(public dialogRef: MatDialogRef<ModalComponent>,@Inject(MAT_DIALOG_DATA) public data: any) {
     console.log(data.value);
     this.mensaje=data.value
+    this.type=data.type
   }
 
   close(): void {
