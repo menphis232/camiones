@@ -32,12 +32,13 @@
       </div>
     </ng-container>
 
-    <div class="content-return" *ngIf="jornadaNueva && step > 0">
-      <button class="btn-secondary btn-back" (click)="cambiarPaso(0)"> <mat-icon
+    <div class="content-return" >
+      <button class="btn-secondary btn-back" *ngIf="step > 0" (click)="cambiarPaso(0)"> <mat-icon
           class="material-symbols-outlined">chevron_left</mat-icon>
       </button>
 
-      <button class="btn-red" (click)="endDay()" >Finalizar Jornada</button>
+      <button *ngIf="jornadaNueva && step > 0" class="btn-red" (click)="endDay()" >Finalizar Jornada</button>
+      <button *ngIf="!jornadaNueva && step > 0" class="btn-green" (click)="initDay()" >Iniciar Jornada</button>
     </div>
 
 
@@ -67,7 +68,8 @@
     <div *ngIf=" step == 2" class="menu-middle-list">
       <div class="form-group">
         <label for="" class="blue">Ruta actual</label>
-        <button class="btn-secondary route-active">{{actualRoute.name}}</button>
+        <button class="btn-secondary route-active" *ngIf="actualRoute">{{actualRoute.name}}</button>
+        <button class="btn-secondary route-active" *ngIf="!actualRoute">Seleccione una ruta</button>
       </div>
 
 
