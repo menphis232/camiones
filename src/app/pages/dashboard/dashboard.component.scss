@@ -1,7 +1,7 @@
 .temp-dashboard{
   height: 100%;
   display: grid;
-  background: url('../../../assets/image/back-map.png');
+  // background: url('../../../assets/image/back-map.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -76,6 +76,7 @@
 
   .content-middle{
     background-color: white;
+  
   }
   .menu-middle{
     margin: 0px auto;
@@ -165,4 +166,7 @@
   ::ng-deep .mat-mdc-tab-body-content{
     min-height: 150px !important;
   }
+}
+#map {
+  height: 300px;
 }

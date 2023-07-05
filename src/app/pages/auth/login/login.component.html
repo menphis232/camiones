@@ -1,21 +1,19 @@
 <div class="temp-login">
-
   <div class="card">
-    <form class="form" >
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="logIn()">
 
       <div class="form-group">
-        <label for="">Usuario</label>
-        <input type="text" class="input-block">
+        <label for="usuario">Usuario</label>
+        <input type="text" class="input-block" id="usuario" formControlName="user">
       </div>
 
       <div class="form-group">
-        <label for="">PIN</label>
-        <input type="password" class="input-block">
+        <label for="pin">PIN</label>
+        <input type="password" class="input-block" id="pin" formControlName="password">
       </div>
 
-
-      <button class="btn-primary justify-self-center">Iniciar sesión</button>
+      <button type="submit" class="btn-primary justify-self-center">Iniciar sesión</button>
     </form>
-
   </div>
 </div>
+

@@ -33,15 +33,17 @@
               "src/styles.scss",
               "src/assets/theme/custom.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/mapbox-gl/dist/mapbox-gl.js"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2MB",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
