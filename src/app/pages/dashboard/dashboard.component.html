@@ -1,67 +1,79 @@
 <div class="temp-dashboard">
 
-  <div class="menu-top">
-    <ng-container *ngIf="step == 0">
+  <div class="menu-top justify-content-center">
+    <ng-container *ngIf="step==0" >
       <button
+      *ngIf="!jornadaNueva"
         class=" justify-self-center"
-        [class]="finish ? 'btn-red' : 'btn-green'"
-        (click)=" finish ? (step = 2) : (finish = true) "
+        class="btn-green"
+        (click)="initDay()"
       >
-        {{finish ? 'Finalizar Jornada' : 'Iniciar Jornada'}}
+       Iniciar Jornada
+      </button>
+      <button
+      *ngIf="jornadaNueva"
+        class=" justify-self-center"
+        class="btn-red"
+        (click)="cambiarPaso(2)"
+      >
+       Finalizar Jornada
       </button>
 
       <div class="content-select-route">
         <div class="form-group">
           <label for="">Ruta actual</label>
-          <button class="btn select-route">Seleccione una ruta</button>
+     
+          <button class="btn select-route" *ngIf="actualRoute">     {{actualRoute.name}}</button>
+          <button class="btn select-route" *ngIf="!actualRoute" (click)="cambiarPaso(1)">Seleccione una ruta</button>
+
         </div>
 
-        <button class="btn see-all" (click)="step = 1">Ver todas las rutas</button>
+        <button class="btn see-all" (click)="cambiarPaso(1)">Ver todas las rutas</button>
       </div>
     </ng-container>
 
-    <div class="content-return" *ngIf="step > 0">
-      <button class="btn-secondary btn-back" (click)="step = 0"> <mat-icon
+    <div class="content-return" *ngIf="jornadaNueva && step > 0">
+      <button class="btn-secondary btn-back" (click)="cambiarPaso(0)"> <mat-icon
           class="material-symbols-outlined">chevron_left</mat-icon>
       </button>
 
-      <button class="btn-red">Finalizar Jornada</button>
+      <button class="btn-red" (click)="endDay()" >Finalizar Jornada</button>
     </div>
 
 
   </div>
 
   <div [class.content-middle]="step > 0">
-
-    <div *ngIf="step == 1 " class="menu-middle">
+    <div *ngIf="step==0"  id="map"></div>
+    <div *ngIf="step==1" class="menu-middle">
       <div class="form-group">
         <label for="" class="blue">Ruta actual</label>
-        <button class="btn-secondary route-active">Urb. Costa Azul</button>
+        <button class="btn-secondary route-active" *ngIf="actualRoute">{{actualRoute.name}}</button>
+        <button class="btn-secondary route-active" *ngIf="!actualRoute">Seleccione una ruta</button>
       </div>
 
 
-      <div class="list-route">
+      <div class="list-route" >
         <p class="blue font-500">Otras rutas</p>
 
 
-        <button class="btn-secondary">Urb. Costa Azul</button>
-        <button class="btn-secondary">Urb. Costa Azul</button>
-        <button class="btn-secondary">Urb. Costa Azul</button>
+        <button class="btn-secondary" (click)="saveActualRoute(route)" *ngFor="let route of routes">{{route.name}}</button>
+
 
       </div>
 
     </div>
 
-    <div *ngIf="step == 2" class="menu-middle-list">
+    <div *ngIf=" step == 2" class="menu-middle-list">
       <div class="form-group">
         <label for="" class="blue">Ruta actual</label>
-        <button class="btn-secondary route-active">Urb. Costa Azul</button>
+        <button class="btn-secondary route-active">{{actualRoute.name}}</button>
       </div>
 
 
       <div class="list-route-check">
-        <div  class="checkbox-group" *ngFor="let item of [1,2,3,4,5,6,7]">
-            <label class="font-700 blue">Urb. Costa Azul</label>
+        <div  class="checkbox-group" *ngFor="let item of zonas">
+            <label class="font-700 blue">{{item.name}}</label>
 
             <div class="flex align-items-center gap-10">
               <input type="checkbox" class="input-checkbox">
@@ -88,10 +100,10 @@
           <div class="form-group">
             <label for="">Camión asignado</label>
 
-            <ng-select class="custom" notFoundText="Sin Resultados" placeholder="Selecciona el tipo de camión"
+            <ng-select class="custom" [ngModel]="selectedTruck" (change)="selectTruck($event)" notFoundText="Sin Resultados" placeholder="Selecciona el tipo de camión"
               [clearable]="false">
-              <ng-option [value]="1">
-                10 mil litros
+              <ng-option [value]="truck" *ngFor="let truck of trucks">
+                {{truck.lts}} - Litros
               </ng-option>
             </ng-select>
           </div>
