@@ -2,7 +2,10 @@
   display: grid;
   height: 100%;
   background-color: var(--blue);
+   background: url('../../../../assets/image/fondologin.jpeg');
   place-content: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
 
   label{
@@ -17,4 +20,15 @@
       min-width: 300px;
     }
   }
+  .cajaTitulo{
+    text-align: center;
+    margin-bottom: 50px;
+
+    h2{
+      color: white;
+      font-size: 30px;
+    }
+  }
+
 }
+

@@ -1,24 +1,25 @@
 <div class="temp-dashboard">
 
-  <div class="menu-top justify-content-center">
+  <div class="menu-top ">
     <ng-container *ngIf="step==0" >
-      <button
-      *ngIf="!jornadaNueva"
-        class=" justify-self-center"
-        class="btn-green"
-        (click)="initDay()"
-      >
-       Iniciar Jornada
-      </button>
-      <button
-      *ngIf="jornadaNueva"
-        class=" justify-self-center"
-        class="btn-red"
-        (click)="cambiarPaso(2)"
-      >
-       Finalizar Jornada
-      </button>
-
+      <div class="justify-content-center" style=" margin-left: auto;margin-right: auto;">
+        <button
+        *ngIf="!jornadaNueva"
+          class=" justify-self-center"
+          class="btn-green"
+          (click)="initDay()"
+        >
+        Iniciar Jornada
+        </button>
+        <button
+        *ngIf="jornadaNueva"
+          class=" justify-self-center"
+          class="btn-red"
+          (click)="cambiarPaso(2)"
+        >
+        Finalizar Jornada
+        </button>
+      </div>
       <div class="content-select-route">
         <div class="form-group">
           <label for="">Ruta actual</label>
@@ -37,8 +38,8 @@
           class="material-symbols-outlined">chevron_left</mat-icon>
       </button>
 
-      <button *ngIf="jornadaNueva && step > 0" class="btn-red" (click)="endDay()" >Finalizar Jornada</button>
-      <button *ngIf="!jornadaNueva && step > 0" class="btn-green" (click)="initDay()" >Iniciar Jornada</button>
+      <button *ngIf="jornadaNueva && step > 0" class="btn-red" (click)="endDay()" style=" margin-left: auto;margin-right: auto;">Finalizar Jornada</button>
+      <button *ngIf="!jornadaNueva && step > 0" class="btn-green" (click)="initDay()" style=" margin-left: auto;margin-right: auto;">Iniciar Jornada</button>
     </div>
 
 
@@ -78,7 +79,7 @@
             <label class="font-700 blue">{{item.name}}</label>
 
             <div class="flex align-items-center gap-10">
-              <input type="checkbox" class="input-checkbox">
+              <input type="checkbox" class="input-checkbox"  [(ngModel)]="item.checked">
               <label class="font-700 blue">Visitado</label>
             </div>
 

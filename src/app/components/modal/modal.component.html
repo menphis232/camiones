@@ -1,7 +1,12 @@
-<h2 mat-dialog-title>Mensaje</h2>
-<mat-dialog-content>
-  <p>{{mensaje}}</p>
+<h2 mat-dialog-title style="text-align: center;" [ngClass]="type==='success' ? 'green' : type==='error' ? 'red' : 'aqua' ">
+  <mat-icon style="color:white" *ngIf="type==='success'">check_circle_outline</mat-icon>
+  <mat-icon style="color:white"  *ngIf="type==='error'">highlight_off</mat-icon>
+  <mat-icon style="color:white"  *ngIf="type==='info'">info</mat-icon>
+
+</h2>
+<mat-dialog-content [ngClass]="type==='success' ? 'green' : type==='error' ? 'red' : 'aqua' ">
+  <p style="    text-align: center;" [ngClass]="type==='success' ? 'green' : type==='error' ? 'red' : 'aqua' ">{{mensaje}}</p>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button (click)="close()">Cerrar</button>
+<mat-dialog-actions align="end" [ngClass]="type==='success' ? 'green' : type==='error' ? 'red' : 'aqua' ">
+  <button class="boton" mat-button (click)="close()">Cerrar</button>
 </mat-dialog-actions>
