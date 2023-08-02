@@ -15,7 +15,12 @@ import { ModalComponent } from './components/modal/modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { environment } from '../app/environments/environment';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 
+// Importa el módulo Plugins de Capacitor
+import { Plugins } from '@capacitor/core';
 
 
 @NgModule({
@@ -36,7 +41,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HttpClientModule,
     MatDialogModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule,
+    MatDividerModule
   ],
   providers: [    {
     provide: HTTP_INTERCEPTORS,
@@ -45,4 +52,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  
+}
