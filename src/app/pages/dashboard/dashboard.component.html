@@ -3,33 +3,18 @@
   <div class="menu-top ">
     <ng-container *ngIf="step==0" >
       <div class="justify-content-center" style=" margin-left: auto;margin-right: auto;">
-        <button
-        *ngIf="!jornadaNueva"
-          class=" justify-self-center"
-          class="btn-green"
-          (click)="initDay()"
-        >
-        Iniciar Jornada
-        </button>
-        <button
-        *ngIf="jornadaNueva"
-          class=" justify-self-center"
-          class="btn-red"
-          (click)="cambiarPaso(2)"
-        >
-        Finalizar Jornada
-        </button>
+   
       </div>
-      <div class="content-select-route">
+      <div class="content-select-route" style="    text-align: center;">
         <div class="form-group">
-          <label for="">Ruta actual</label>
+          <h2 style="color:white;font-size:20px;font-weight: 700;" for="">{{informacionChofer}}</h2>
+          <h2 style="color:white;font-size:20px;font-weight: 700;" for="" *ngIf="totalRuta">Rutas Activas: {{totalRuta.total}}</h2>
      
-          <button class="btn select-route" *ngIf="actualRoute">     {{actualRoute.name}}</button>
-          <button class="btn select-route" *ngIf="!actualRoute" (click)="cambiarPaso(1)">Seleccione una ruta</button>
+
 
         </div>
 
-        <button class="btn see-all" (click)="cambiarPaso(1)">Ver todas las rutas</button>
+       
       </div>
     </ng-container>
 
@@ -38,58 +23,34 @@
           class="material-symbols-outlined">chevron_left</mat-icon>
       </button>
 
-      <button *ngIf="jornadaNueva && step > 0" class="btn-red" (click)="endDay()" style=" margin-left: auto;margin-right: auto;">Finalizar Jornada</button>
-      <button *ngIf="!jornadaNueva && step > 0" class="btn-green" (click)="initDay()" style=" margin-left: auto;margin-right: auto;">Iniciar Jornada</button>
+      <!-- <button *ngIf="jornadaNueva && step > 0" class="btn-red" (click)="endDay()" style=" margin-left: auto;margin-right: auto;">Finalizar Jornada</button>
+      <button *ngIf="!jornadaNueva && step > 0" class="btn-green" (click)="initDay()" style=" margin-left: auto;margin-right: auto;">Iniciar Jornada</button> -->
     </div>
 
 
   </div>
 
-  <div [class.content-middle]="step > 0">
-    <div *ngIf="step==0"  id="map"></div>
-    <div *ngIf="step==1" class="menu-middle">
-      <div class="form-group">
-        <label for="" class="blue">Ruta actual</label>
-        <button class="btn-secondary route-active" *ngIf="actualRoute">{{actualRoute.name}}</button>
-        <button class="btn-secondary route-active" *ngIf="!actualRoute">Seleccione una ruta</button>
-      </div>
+  <div [class.content-middle]="step > 0" style="margin-top: 50px;">
+    <div *ngIf="step==0">
 
-
-      <div class="list-route" >
-        <p class="blue font-500">Otras rutas</p>
-
-
-        <button class="btn-secondary" (click)="saveActualRoute(route)" *ngFor="let route of routes">{{route.name}}</button>
-
-
-      </div>
-
+      <mat-card class="example-card" style="margin-bottom: 50px;" *ngFor="let ruta of routes">
+        <mat-card-header>
+        
+          <mat-card-title class="trata">{{ruta.Path.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <!-- <p>This card has divider and indeterminate progress as footer</p>
+          <p>Prueba bebe</p> -->
+          <mat-divider></mat-divider>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="btn-red" (click)="endDay(ruta.id)" style=" margin-left: auto;margin-right: auto;">Despachada</button>
+        </mat-card-actions>
+    
+      </mat-card>
     </div>
 
-    <div *ngIf=" step == 2" class="menu-middle-list">
-      <div class="form-group">
-        <label for="" class="blue">Ruta actual</label>
-        <button class="btn-secondary route-active" *ngIf="actualRoute">{{actualRoute.name}}</button>
-        <button class="btn-secondary route-active" *ngIf="!actualRoute">Seleccione una ruta</button>
-      </div>
 
-
-      <div class="list-route-check">
-        <div  class="checkbox-group" *ngFor="let item of zonas">
-            <label class="font-700 blue">{{item.name}}</label>
-
-            <div class="flex align-items-center gap-10">
-              <input type="checkbox" class="input-checkbox"  [(ngModel)]="item.checked">
-              <label class="font-700 blue">Visitado</label>
-            </div>
-
-
-        </div>
-
-
-      </div>
-
-    </div>
 
   </div>
 
@@ -97,35 +58,6 @@
 
   <div class="menu-bottom">
 
-    <mat-tab-group>
-      <mat-tab label="Cargando">
-        <div class="content-charge">
-          <div class="form-group">
-            <label for="">Camión asignado</label>
-
-            <ng-select class="custom" [ngModel]="selectedTruck" (change)="selectTruck($event)" notFoundText="Sin Resultados" placeholder="Selecciona el tipo de camión"
-              [clearable]="false">
-              <ng-option [value]="truck" *ngFor="let truck of trucks">
-                {{truck.lts}} - Litros
-              </ng-option>
-            </ng-select>
-          </div>
-        </div>
-      </mat-tab>
-      <mat-tab label="Despachando">
-        <div class="content-charge">
-          <div class="form-group">
-            <label for="">Camión asignado</label>
-
-            <ng-select class="custom" notFoundText="Sin Resultados" placeholder="Selecciona el tipo de camión"
-              [clearable]="false">
-              <ng-option [value]="1">
-                10 mil litros
-              </ng-option>
-            </ng-select>
-          </div>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
+ 
   </div>
 </div>
